@@ -16,7 +16,7 @@ api_key = st.secrets["FIREBASE_API_KEY"]
 
 # Firebase configuration
 firebaseConfig = {
-    "apiKey":st.secrets["API_KEY"],
+    "apiKey":st.secrets["FIREBASE_API_KEY"],
     "authDomain": st.secrets["AUTH_DOMAIN"],
     "databaseURL": "",
     "projectId": st.secrets["PROJECT_ID"],
