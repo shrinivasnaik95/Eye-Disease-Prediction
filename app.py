@@ -33,14 +33,15 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
 def model_prediction(test_image_path):
-    model = tf.keras.models.load_model("model.h5", compile=False)
     img = tf.keras.utils.load_img(test_image_path, target_size=(224, 224))
     x = tf.keras.utils.img_to_array(img)
     x = np.expand_dims(x, axis=0)
     x = preprocess_input(x)
+
     predictions = model.predict(x)
-    confidence=np.max(predictions)*100
-    return np.argmax(predictions),confidence # return index of max element
+    confidence = np.max(predictions) * 100
+
+    return np.argmax(predictions), confidence # return index of max element
 
 
 # Initialize session state
