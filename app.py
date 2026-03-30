@@ -12,16 +12,17 @@ from recommendation import get_recommendation
 
 # Load environment variables
 load_dotenv()
+api_key = st.secrets["FIREBASE_API_KEY"]
 
 # Firebase configuration
 firebaseConfig = {
-    "apiKey":os.getenv("API_KEY"),
-    "authDomain": os.getenv("AUTH_DOMAIN"),
+    "apiKey":st.secrets["API_KEY"],
+    "authDomain": st.secrets["AUTH_DOMAIN"],
     "databaseURL": "",
-    "projectId": os.getenv("PROJECT_ID"),
-    "storageBucket": os.getenv("STORAGE_BUCKET"),
-    "messagingSenderId": os.getenv("MESSAGING_SENDER_ID"),
-    "appId": os.getenv("APP_ID")
+    "projectId": st.secrets["PROJECT_ID"],
+    "storageBucket":st.secrets["STORAGE_BUCKET"],
+    "messagingSenderId": st.secrets["MESSAGING_SENDER_ID"],
+    "appId": st.secrets["APP_ID"]
 }
 
 firebase = pyrebase.initialize_app(firebaseConfig)
