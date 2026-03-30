@@ -9,7 +9,11 @@ import tempfile
 from recommendation import amd, cnv, csr, dme, dr, drusen, mh, normal
 from mail_utils import send_recommendation_email_async
 from recommendation import get_recommendation
+@st.cache_resource
+def load_model_cached():
+    return tf.keras.models.load_model("model.h5", compile=False)
 
+model = load_model_cached()
 # Load environment variables
 load_dotenv()
 api_key = st.secrets["FIREBASE_API_KEY"]
@@ -29,7 +33,7 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
 def model_prediction(test_image_path):
-    model = tf.keras.models.load_model("Trained_Model_8Class.keras", compile=False)
+    model = tf.keras.models.load_model("model.h5", compile=False)
     img = tf.keras.utils.load_img(test_image_path, target_size=(224, 224))
     x = tf.keras.utils.img_to_array(img)
     x = np.expand_dims(x, axis=0)
