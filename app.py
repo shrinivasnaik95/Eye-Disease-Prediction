@@ -11,7 +11,7 @@ from mail_utils import send_recommendation_email_async
 from recommendation import get_recommendation
 @st.cache_resource
 def load_model_cached():
-    return tf.keras.models.load_model("Trained_Model_8Class.keras", compile=False)
+    return tf.keras.models.load_model("model.h5", compile=False)
 
 model = load_model_cached()
 # Load environment variables
