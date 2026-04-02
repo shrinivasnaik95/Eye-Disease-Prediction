@@ -9,8 +9,8 @@ import streamlit as st
 # Load environment variables from .env
 load_dotenv()
 
-SENDER_EMAIL = st.secrets["SENDER_EMAIL"]
-SENDER_APP_PASSWORD = st.secrets["SENDER_APP_PASSWORD"]
+SENDER_EMAIL =os.getenv("SENDER_EMAIL")
+SENDER_APP_PASSWORD = os.getenv("SENDER_APP_PASSWORD")
 
 def _send_email_sync(to_email: str, subject: str, plain_text: str, html_text: str = None):
     """Send an email synchronously."""
